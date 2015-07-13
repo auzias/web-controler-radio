@@ -32,3 +32,25 @@ body {
 .player {
 	background: #F7FE2E;
 }
+
+.component {
+	padding: 0px 10px 0px 10px;
+	margin: 10px 0px 5px 0px;
+}
+
+.main {
+	padding: 5px;
+	background: #848484;
+}
+
+.elevation-2 {
+	border: solid 1px #888;
+	-moz-box-shadow: 2px 2px 3px 0px #656565;
+	-webkit-box-shadow: 2px 2px 3px 0px #656565;
+	-o-box-shadow: 2px 2px 3px 0px #656565;
+	box-shadow: 2px 2px 3px 0px #656565;
+	filter: progid:DXImageTransform.Microsoft.Shadow(color=#656565,
+		Direction=134, Strength=5);
+}
+
+
