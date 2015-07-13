@@ -1,5 +1,5 @@
 <?php
-  include ('ihm.php');
+  include ('mock-up/ihm.php');
   $output = "";
   if (isset($_POST[action])) { //If an action is requested and the variable is set:
 
