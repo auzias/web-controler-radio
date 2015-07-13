@@ -22,7 +22,8 @@
       if (isset($_POST["level"])) { //Is the level variable also set?
         $level = $_POST["level"];
         if ($level >= 0 && $level <= 100) { //Is the $level value correct?
-          $output = shell_exec('amixer set Master $level%');
+          $output = shell_exec('sudo amixer set Master '.$level.'%');
+          echo "<pre>$output</pre>";
         }
       }
     }
