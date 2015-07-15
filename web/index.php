@@ -72,7 +72,20 @@
         dprint ('set '.$_POST["level"]);
       }
     }
-  }
+
+    //Set the sound level 5% louder:
+    if ($_POST["action"] == "volup") {
+      dprint('+5%');
+      $output = shell_exec('sudo amixer set Master 5%+');;
+    }
+
+    //Set the sound level 5% lower:
+    if ($_POST["action"] == "voldown") {
+      dprint('+5%');
+      $output = shell_exec('sudo amixer set Master 5%-');;
+    }
+
+  }//end of isset ($_POST['action'])
 
   dprint ("saved level:".$_COOKIE['level']);
   $output = shell_exec("sudo amixer get Master");
