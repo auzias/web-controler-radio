@@ -1,6 +1,7 @@
 <?php
   $output = "";
   $DEFAULT_LEVEL = 30;
+
 /*****************
  *   Functions   *
  *****************/
@@ -10,16 +11,21 @@
       }
   }
 
-   function set_volume ($level) {
-       if ($level < 0 && $level > 100) { //Is the $level value correct?
-         $level = $DEFAULT_LEVEL;
-       }
-       $output = shell_exec('sudo amixer set Master '.$level.'%');
+   function get_volume () {
+       return shell_exec("sudo amixer get Master | grep 'Mono:' | awk '{print $4}'| tr -d '[%]'");
    }
 
+    function set_volume ($level) {
+        if ($level < 0 && $level > 100) { //Is the $level value correct?
+          $level = $DEFAULT_LEVEL;
+        }
+        $output = shell_exec('sudo amixer set Master '.$level.'%');
+    }
+
   function set_cookie_current_volume() {
-    $level = shell_exec("sudo amixer get Master | grep 'Mono:' | awk '{print $4}'| tr -d '[%]'");
+    $level = get_volume();
     setcookie('level', $level, time() + 7*24*3600, null, null, false, true);
+    dprint (">>Saving to ".$level);
     return $level;
   }
 
@@ -46,28 +52,33 @@
          before muting, and reading this same cookie to unmute.
       */
       set_cookie_current_volume();
-      $output = shell_exec('sudo amixer set Master 0%');
+      $output = set_volume (0);
     }
 
     //Unmute the sounds system:
     if ($_POST["action"] == "unmute") {
-      dprint ('unmuting');
-      set_volume ($_COOKIE['level']);
+      if (get_volume() == 0) {
+        dprint ('unmuting');
+        set_volume ($_COOKIE['level']);
+      } else {
+        dprint ("skipped");
+      }
     }
 
     //Set the volume level:
     if ($_POST["action"] == "volume") {
       if (isset ($_POST["level"])) { //Is the level variable also set?
         set_volume ($_POST["level"]);
+        dprint ('set '.$_POST["level"]);
       }
     }
   }
 
-  dprint ("$output");
   dprint ("saved level:".$_COOKIE['level']);
-  $output = shell_exec("sudo amixer get Master | grep 'Mono:'");
-  echo "<pre>$output</pre>";
   $output = shell_exec("sudo amixer get Master");
   echo "<pre>$output</pre>";
+  echo "<br><br><br>";
 
+  $output = shell_exec("sudo amixer get Master | grep 'Mono:' | awk '{print $4}'| tr -d '[%]'");
+  echo "<pre>".$output."</pre>";
 ?>
