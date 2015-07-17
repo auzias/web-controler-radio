@@ -1,6 +1,7 @@
 var volume;
 
 $(function() {
+	doPoll();
 	volume = $(".player");
 	volume.roundSlider({
 		editableTooltip: false,
@@ -17,7 +18,23 @@ function onVolumeChanged(e) {
 	var data = "volume=set&level="+e.value;
 	$.ajax({
 		type: "POST",
-		url: "http://pc-mna-139/web-controler-radio/web/index.php",
+		url: "index.php",
 		data: data,
 	});
+}
+
+function doPoll() {
+	setTimeout(function() {
+	 	$.ajax({
+		        url: "index.php",
+				data: "level",
+		        type: "GET",
+		        success: function(data) {
+					console.log(data);
+					volume.roundSlider.value = data;
+		        },
+		        complete: doPoll,
+		        timeout: 2000
+		})}
+	, 3000);
 }
