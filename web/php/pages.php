@@ -6,4 +6,8 @@
     include ('mock-up/ihm.html');
   }
 
+  if (isset ($_GET[level])) { //Debug mode
+    echo get_volume ();
+  }
+
 ?>
