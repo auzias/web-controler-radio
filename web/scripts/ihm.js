@@ -1,17 +1,17 @@
 var volume;
 
 $(function() {
-	doPoll();
 	volume = $(".player");
 	volume.roundSlider({
 		editableTooltip: false,
 		sliderType: "min-range",
 		radius: 300,
 		width: 30,
-		value: 9,
+		value: 0,
 		handleShape: "square",
 		change: "onVolumeChanged"
 	});
+	doPoll();
 });
 
 function onVolumeChanged(e) {
