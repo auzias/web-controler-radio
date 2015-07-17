@@ -5,7 +5,7 @@
       }
   }
 
-   function get_volume () {
+   function get_volume() {
        return shell_exec("sudo amixer get Master | grep 'Mono:' | awk '{print   $4}'| tr -d '[%]'");
    }
 
