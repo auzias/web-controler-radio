@@ -14,13 +14,3 @@
 	display: flex;
 	align-items: center;
 }
-
-.elevation-2 {
-	border: solid 1px #888;
-	-moz-box-shadow: 2px 2px 3px 0px #656565;
-	-webkit-box-shadow: 2px 2px 3px 0px #656565;
-	-o-box-shadow: 2px 2px 3px 0px #656565;
-	box-shadow: 2px 2px 3px 0px #656565;
-	filter: progid:DXImageTransform.Microsoft.Shadow(color=#656565,
-		Direction=134, Strength=5);
-}
