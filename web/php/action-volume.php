@@ -31,13 +31,13 @@
   }
 
   //Set the sound level 5% louder:
-  if ($_POST["volume"] == "volup") {
+  if ($_POST["volume"] == "up") {
     dprint('+5%');
     $output = shell_exec('sudo amixer set Master 5%+');;
   }
 
   //Set the sound level 5% lower:
-  if ($_POST["volume"] == "voldown") {
+  if ($_POST["volume"] == "down") {
     dprint('+5%');
     $output = shell_exec('sudo amixer set Master 5%-');;
   }
