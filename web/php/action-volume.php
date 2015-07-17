@@ -14,7 +14,7 @@ $action = $_POST["volume"];
        A tweak is then needed, that is to save the sound level in a cookie,
        before muting, and reading this same cookie to unmute.
      */
-    set_cookie_current_volume();
+    save_current_volume();
     $output = set_volume (0);
   }
 
