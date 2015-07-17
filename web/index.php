@@ -8,9 +8,8 @@
   require_once("./php/pages.php");
   require_once("./php/actions.php");
 
-  dprint ("saved level:".$_COOKIE['level']);
   $output = shell_exec("sudo amixer get Master");
-  echo "<pre>$output</pre>";
+  dprint("<pre>$output</pre>");
 
-  
+
 ?>
